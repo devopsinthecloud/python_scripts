@@ -1,14 +1,6 @@
 import subprocess, os, pydig, sys, getopt 
 ipa = sys.argv[1]
-
-def load_domains():
-    domains = []
-    for y in range(2, len(sys.argv)):
-        domains.append(sys.argv[y])
-    return(domains) 
-
-
-domain_list = load_domains()
+domain_list = sys.argv[2:]
 
 def domain_checker():
     for d in domain_list:
