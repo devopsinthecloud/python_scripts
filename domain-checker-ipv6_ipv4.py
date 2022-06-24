@@ -3,7 +3,9 @@ import colorama
 from colorama import Fore 
 domain = sys.argv[1]
 d_ipa = pydig.query(domain, 'AAAA') #arr
-d_ipa4 = pydig.query(domain, 'A')  #array
+d_ipa4 = pydig.query(domain, 'A')
+d_cname = pydig.query(domain, 'CNAME')  #array
+d_cname_str = ''.join(d_cname)
 ipa_str = ''.join(d_ipa)
 ipa4_str = ''.join(d_ipa4)
 
@@ -52,5 +54,15 @@ def domain_checker():
 
 domain_checker()
 
+#import pdb; pdb.set_trace()
+def cname_checker():
+    for dom in domain_list:
+        cname = pydig.query(dom, 'CNAME')
+        if d_cname_str in cname:
+            print(f"{dom} has a CNAME: {cname} and we will check it")
+            cname_s = ''.join(cname)
+            cname_end = pydig.query(cname_s, 'CNAME') #can i query this?
+            if len(cname_end) == 0:
+                print(f"The end domain {cname_s} has no CNAME record")
 
-#output = pydig.query(d, 'A')
+cname_checker()
