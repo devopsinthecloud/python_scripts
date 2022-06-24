@@ -59,10 +59,12 @@ def cname_checker():
     for dom in domain_list:
         cname = pydig.query(dom, 'CNAME')
         if d_cname_str in cname:
-            print(f"{dom} has a CNAME: {cname} and we will check it")
+            print(Fore.GREEN + f"{dom} has a CNAME: {cname} and we will check it")
             cname_s = ''.join(cname)
-            cname_end = pydig.query(cname_s, 'CNAME') #can i query this?
+            cname_end = pydig.query(cname_s, 'CNAME') 
             if len(cname_end) == 0:
-                print(f"The end domain {cname_s} has no CNAME record")
+                print(Fore.RED + f"The end domain {cname_s} has no CNAME record")
+            else:
+                print(Fore.CYAN + f"The end domain {cname_s} has this CNAME: {cname_end}")
 
 cname_checker()
