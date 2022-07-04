@@ -1,4 +1,5 @@
 #don't forget to create a file with your directories
+#install applescript==2021.2.9
 import applescript
 from applescript import tell 
 
