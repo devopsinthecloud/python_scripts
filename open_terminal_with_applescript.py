@@ -1,3 +1,4 @@
+#don't forget to create a file with your directories
 import applescript
 from applescript import tell 
 
