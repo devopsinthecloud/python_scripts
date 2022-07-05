@@ -1,7 +1,4 @@
-#don't forget to create a file with your directories
-#install applescript==2021.2.9
-import sys, subprocess, pathlib, os, platform, applescript
-from applescript import tell 
+import sys, subprocess, pathlib, os, platform
 
 chd = pathlib.Path.home()
 command = "bin/dev"
@@ -13,6 +10,8 @@ def npmrc():
         subprocess.call(["cp", f"{chd}/.npmrc", dir])
 
 def apple():
+    import applescript
+    from applescript import tell 
     for directory in directories:
         tell.app('Terminal', f'do script "cd {directory}; {command}"')
 
@@ -22,8 +21,9 @@ print(osys)
 def tmux():
     subprocess.call(["tmux", "new-session", "cd remark-vp-cf && bin/dev --skip-npx", ";", "split-window", "cd remark-vp-crm && bin/dev --skip-npx", ";", "split-window", "cd remark-vp-admin && bin/dev --skip-npx", ";", "split-window", "cd remark-vp-login/remark-login && bin/dev --skip-npx", ";", "select-layout", "tiled"])
 
-if "Linux" not in osys or "Ubuntu" not in osys:
+if "Linux" not in osys:
     print("We can use Macos terminal")
     apple()
 else:
     tmux()
+
