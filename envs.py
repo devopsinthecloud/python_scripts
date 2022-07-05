@@ -8,6 +8,7 @@ subprocess.call(["npx", "--ignore-existing", "google-artifactregistry-auth", f"-
 def npmrc():
     for dir in directories:
         subprocess.call(["cp", f"{chd}/.npmrc", dir])
+npmrc()
 
 def apple():
     import applescript
